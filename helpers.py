@@ -1,4 +1,36 @@
 #!/usr/bin/env python
+import unittest
+
+#-------------------------------------------------------------------------------
+def is_sequence( arg ):
+    return not hasattr(arg, 'strip') and hasattr(arg, '__getitem__') and hasattr(arg, '__iter__')
+
+class TestIsSeq(unittest.TestCase):
+    def test_string(self):
+        self.assertFalse(is_sequence('test'))
+
+    def test_tuple_string(self):
+        self.assertTrue(is_sequence(('test', )))
+
+    def test_tuple_strings(self):
+        self.assertTrue(is_sequence(('test0', 'test1')))
+
+    def test_list_string(self):
+        self.assertTrue(is_sequence(['test', ]))
+
+    def test_list_strings(self):
+        self.assertTrue(is_sequence(['test0', 'test1']))
+
+#-------------------------------------------------------------------------------
+def is_sequence_or_set( arg ):
+    return isinstance(arg, set) or is_sequence(arg)
+
+class TestIsSeqOrSet(unittest.TestCase):
+    def test_set_string(self):
+        self.assertTrue(is_sequence_or_set(set('test', )))
+
+    def test_set_strings(self):
+        self.assertTrue(is_sequence_or_set(set(('test0', 'test1'))))
 
 #-------------------------------------------------------------------------------
 def getCaller():
@@ -48,3 +80,5 @@ def sortDict( adict ):
     keys.sort()
     return map(adict.get, keys)
 
+if __name__ == '__main__':
+    unittest.main()
