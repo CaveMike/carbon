@@ -1,10 +1,9 @@
-#!/usr/bin/env python
-from UserString import MutableString
+#!/usr/bin/env python3
 
 #-------------------------------------------------------------------------------
 def makeIdentifier( rawIdentifier, replacement = '' ):
     #FIXME: I assume there is a better way to do this.
-    s = MutableString()
+    s = []
 
     for c in rawIdentifier:
         if ( c == '_' ) or ( c >= 'a' and c <= 'z' ) or ( c >= 'A' and c <= 'Z' ) or ( c >= '0' and c <= '9' ):
@@ -12,7 +11,7 @@ def makeIdentifier( rawIdentifier, replacement = '' ):
         else:
             s += replacement
 
-    return str(s)
+    return ''.join(s)
 
 #-------------------------------------------------------------------------------
 def importName( moduleName, name, log = None ):
@@ -21,7 +20,7 @@ def importName( moduleName, name, log = None ):
 
     try:
         module = __import__( moduleName, globals(), locals(), [name] )
-    except ImportError, e:
+    except ImportError as e:
         if log:
             log.info( 'Failed to import module: ' + moduleName + ', name: ' + name + '.' )
         return None

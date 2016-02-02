@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 import types
 import unittest
 
@@ -13,7 +13,7 @@ def seqToString( seq, conjuction = 'and', default = (), separator = ',', whitesp
     elif len(seq) == 2:
         return str(seq[0]) + str(whitespace) + str(conjuction) + str(whitespace)  + str(seq[1])
     else:
-        if type(seq) == types.TupleType:
+        if type(seq) == tuple:
             seq = [ item for item in seq ]
 
         seq[len(seq) - 1] = str(conjuction) + str(whitespace) + seq[len(seq) - 1]

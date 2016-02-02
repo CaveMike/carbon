@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 import math
 import unittest
 
@@ -73,13 +73,13 @@ def containsWhitespace( s ):
 
 #-------------------------------------------------------------------------------
 def invertDict( d ):
-    return dict( [ (v,k) for k, v in d.iteritems() ] )
+    return dict( [ (v,k) for k, v in d.items() ] )
 
 #-------------------------------------------------------------------------------
 def sortDict( adict ):
-    keys = adict.keys()
+    keys = list(adict.keys())
     keys.sort()
-    return map(adict.get, keys)
+    return list(map(adict.get, keys))
 
 def always_true(*args, **kwargs):
     return True
